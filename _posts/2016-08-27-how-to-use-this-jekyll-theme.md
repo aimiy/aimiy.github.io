@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  如何使用LessOrMore这个Jekyll模版
+title:  本博客使用Jekyll模版原作者Freud
 date:   2016-08-27 01:08:00 +0800
 categories: document
 tag: 教程
@@ -10,6 +10,9 @@ tag: 教程
 {:toc}
 
 
+====================================
+以下为原作者freud的原本留言
+====================================
 致谢
 ====================================
 + 感谢[Less官网](http://lesscss.cn/)的样式，本Jekyll框架的样式都是基于Less官网的样式直接拷贝过来的。只是重构了JS，并且加入了Jekyll语法而已。

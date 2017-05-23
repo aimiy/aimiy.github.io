@@ -18,7 +18,7 @@ paginate: 10
 exclude: ['README.md', 'Gemfile.lock', 'Gemfile', 'Rakefile']
 
 github_username: aimiy
-highlighter: Pygments
+rouge: Pygments
 
 # Build settings
 markdown: kramdown

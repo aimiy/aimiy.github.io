@@ -1,9 +1,9 @@
 ---
 layout: post
-title:  关于section
-date:   2017-05-23 01:08:00 +0800
+title:  关于CSS3
+date:   2017-05-23 20:08:00 +0800
 categories: notes
-tag: section
+tag: css3
 ---
 
 * content

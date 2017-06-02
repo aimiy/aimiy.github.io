@@ -10,4 +10,22 @@ tag: css3
 {:toc}
 
 
-我是正文。我是正文。我是正文。我是正文。我是正文。我是正文。
+{% highlight css %}
+@keyframes bounceInLeft {
+  0% {
+    transform: translate3d(-1000px, 0, 0);
+  }
+  60% {
+    transform: translate3d(25px, 0, 0);
+  }
+  75% {
+    transform: translate3d(-10px, 0, 0);
+  }
+  90% {
+    transform: translate3d(5px, 0, 0);
+  }
+  100% {
+    transform: none;
+  }
+}
+{% endhighlight %}

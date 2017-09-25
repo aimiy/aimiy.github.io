@@ -3,7 +3,7 @@ name: （-1，0）的blog
 email: mioly@foxmail.com
 author: fuyimin
 url: 
-resume_site: 
+resume_site: {{ '/books' | prepend: site.baseurl }}
 github: https://github.com/aimiy/
 baseurl: ""
 description: Always a learner!

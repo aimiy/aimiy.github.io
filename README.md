@@ -1,68 +1,88 @@
-# LessOrMore
+# 技能修炼清单
+## HTML 【3月】
+- [x] 语义元素
+- [x] 块级元素
+- [x] 内嵌元素
+- [x] 表格
+- [x] 输入类型
+
+## CSS【3月】
+- [x] 显示值类型
+- [x] 盒模型
+- [x] 基本定位（静态定位，绝对定位，固定，弹性盒，悬浮型）
+- [ ] 字体样式和网络字体
+- [x] 背景
+- [x] 伪选择器
+- [x] 动画和过渡
+
+## JavaScript
+- [x] 语法
+- [x] 数据类型
+- [x] 函数
+- [x] 对象字面值
+- [x] 面向对象的JavaScript编程
+    - [x] 作用域
+    - [x] 闭包
+    - [x] This
+    - [x] 原型链
+    - [x] 对象修饰模式
+    - [x] 函数类
+    - [x] 原型类
+    - [x] 伪类
+    - [x] 超类和子类
+    - [x] 伪类子类
+    - [ ] 一个游戏项目
+- [ ] 设计模式
+- [x] Ajax
+- [x] jQuery
+
+## 响应式网页设计
+- [x] 媒体查询【9月】
+- [x] 相对大大小小定位【9月】
+
+## CSS框架
+- [ ] Bootstrap
+- [ ] Fundation
 
 
-致谢
-====================================
-+ 感谢[Less官网](http://lesscss.cn/)的样式，本Jekyll框架的样式都是基于Less官网的样式直接拷贝过来的。只是重构了JS，并且加入了Jekyll语法而已。
-
-配置
-------------------------------------
-
-`LessOrMore`项目需要配置的只有一个文件`_config.yml`，打开之后按照如下进行配置。
-
-> 特别注意`baseurl`的配置。如果是`***.github.io`项目，不修改为空''的话，会导致JS,CSS等静态资源无法找到的错误
-
-``` bash
-name: 博客名称
-email: 邮箱地址
-author: 作者名
-url: 个人网站
-### baseurl修改为项目名，如果项目是'***.github.io'，则设置为空''
-baseurl: "/LessOrMore"
-resume_site: 个人简历网站
-github: github地址
-github_username: github用户名称
-FB:
-  comments :
-    provider : duoshuo
-    duoshuo:
-        short_name : 多说账户
-    disqus :
-        short_name : Disqus账户
-```
-
-如何写文章
-------------------------------------
-
-在`LessOrMore/_posts`目录下新建一个文件，可以创建文件夹并在文件夹中添加文件，方便维护。在新建文件中粘贴如下信息，并修改以下的`titile`,`date`,`categories`,`tag`的相关信息，添加`* content {:toc}`为目录相关信息，在进行正文书写前需要在目录和正文之间输入至少2行空行。然后按照正常的Markdown语法书写正文。
-
-``` bash
----
-layout: post
-#标题配置
-title:  标题
-#时间配置
-date:   2016-08-27 01:08:00 +0800
-#大类配置
-categories: document
-#小类配置
-tag: 教程
----
-
-* content
-{:toc}
+## JavaScript库和框架
+- [ ] Angularjs
+- [ ] Emberjs
+- [ ] knockoutjs
 
 
-我是正文。我是正文。我是正文。我是正文。我是正文。我是正文。
-```
+## 版本控制
+- [x] Git
+    - [x] Clone
+    - [x] Add
+    - [x] Commit
+    - [x] Push
+    - [x] Branch
+    - [x] Log
+- [x] Github
+- [x] Forking
+- [x] Pull request
 
-执行
-------------------------------------
 
-``` bash
-jekyll server
-```
+## 网站性能优化
+- [x] 关键呈现路径
+- [x] 图片优化
+- [x] JavaScript压缩
 
-效果
-------------------------------------
-打开浏览器并输入URL`http://localhost:4000/`,回车。
+## 浏览器开发工具
+- [ ] 元素检测
+- [ ] 网络
+- [ ] 时间轴
+- [ ] 应用测试
+- [ ] 资源
+
+## 构建和自动化工具
+- [x] Nmp
+- [x] Grunt
+- [ ] gulp
+- [ ] Bower
+- [ ] Yeoman
+
+## 测试
+- [ ] Mocha
+- [ ] Jasmine

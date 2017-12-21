@@ -10,7 +10,10 @@ tag: canvas
 {:toc}
 
 
-使用 requestAnimationFrame 在画布上播放视频只是您可以执行的多项互动操作之一。
+# requestAnimationFrame
+使用 requestAnimationFrame 在画布上播放视频只是可以执行的多项互动操作之一。
+
+这一块requestAnimationFrame内容还不是很明白，等日后再找一找资料。
 
 要创建更复杂的应用程序，不仅需要更多地思考我们在屏幕上向用户显示的内容，还要思考用户可能生成的需要我们处理的任何输入（键盘、鼠标、音频）。
 

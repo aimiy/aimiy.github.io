@@ -19,7 +19,7 @@ exclude: ['README.md', 'Gemfile.lock', 'Gemfile', 'Rakefile']
 
 github_username: aimiy
 rouge: Pygments
-
+port: 4001
 # Build settings
 markdown: kramdown
 
@@ -40,3 +40,5 @@ FB:
     #   num_posts: 5
     #   width: 580
     #   colorscheme: light
+
+

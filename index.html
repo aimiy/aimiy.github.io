@@ -66,6 +66,12 @@ layout: default
                 <div class="imgWrapper" style="background-image:url({{ post.imgUrl | prepend: site.baseurl }})">
                 </div>
                 {% endif %}
+                {% if post.imgUrlArr %}
+                {% for img in post.imgUrlArr %}
+                <div class="imgWrapper" style="background-image:url({{ img | prepend: site.baseurl }})">
+                </div>
+                {% endfor %}
+                {% endif %}
               </ol>
               {% if forloop.last %}
             </ul>

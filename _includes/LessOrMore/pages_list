@@ -9,12 +9,18 @@
     	{% else %}
     	<ol class="breadcrumb">
     		<li>
-			<a href="{{ node.url | prepend: site.baseurl }}">{{ node.title }}</a></li>
-    		<li style="float:right;"><span>{{ node.date | date: "%F" }}</span></li>
+			<a href="{{ node.url | prepend: site.baseurl }}">{{ node.title }}</a><span class="date">{{ node.date | date: "%F" }}</span></li>
+    		
 			{% if node.imgUrl %}
 			<div class="imgWrapper" style="background-image:url({{ node.imgUrl | prepend: site.baseurl }})">
 			</div>
 			{% endif %}
+			{% if node.imgUrlArr %}
+            {% for img in node.imgUrlArr %}
+            <div class="imgWrapper" style="background-image:url({{ img | prepend: site.baseurl }})">
+            </div>
+            {% endfor %}
+            {% endif %}
     	</ol>
     	{% endif %}
     {% endif %}

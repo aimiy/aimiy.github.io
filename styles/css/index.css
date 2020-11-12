@@ -3988,9 +3988,12 @@ textarea.input-group-sm > .input-group-btn > .btn {
   border-radius: 4px;
 }
 .breadcrumb > li {
-  display: inline-block;
+  /* display: inline-block; */
 }
-.breadcrumb > li + li:before {
+.breadcrumb .date{
+  float:right;
+}
+.breadcrumb .date:before {
   content: "/\00a0";
   padding: 0 5px;
   color: #cccccc;
@@ -3999,11 +4002,13 @@ textarea.input-group-sm > .input-group-btn > .btn {
   color: #999999;
 }
 .breadcrumb > .imgWrapper{
+  display: inline-block;
   height: 150px;
-  max-width: 500px;
+  width: 150px;
+  /* max-width: 200px; */
   background-repeat: no-repeat;
   background-size: contain;
-  margin-top: 10px;
+  margin: 10px;
 }
 .pagination {
   display: inline-block;

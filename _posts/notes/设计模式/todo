@@ -1,0 +1,9 @@
+TODO: redux-thunk 核心代码只有五六行，很多人理解不了这两种写法的区别（上图：thunk，下图：无 thunk）
+
+TODO: NG事实证明，写ng并不能增长工程能力。同事写的ng代码，真的说得上，脏乱差，到处any，为了偷懒，所有组建挂在一个ng module
+
+TODO: HOOKS
+
+TODO: redux 作者 Dan 亲自解释 https://stackoverflow.com/a/35415559/343194
+
+TODO 嗯 我现在把请求封装成一个hooks,这个hooks需要传递当前图表对应的query函数，返回请求后的数据

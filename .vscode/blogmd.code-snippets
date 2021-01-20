@@ -19,10 +19,10 @@
 		"scope": "markdown",
 		"prefix": "md",
 		"body": [
-			"---,",
+			"---",
 			"layout: post",
-			"title: $1",
-			"date:2021-01-21 11:00:00 +0800",
+			"title:  $1",
+			"date:   2021-01-21 11:00:00 +0800",
 			"categories: $2",
 			"tag: $3",
 			"---",
@@ -32,6 +32,16 @@
 			"",
 			""
 		],
-		"description": "Log output to console"
+		"description": "markdown的开头内容快捷输入"
+	},
+	"table": {
+		"scope": "markdown",
+		"prefix": "table",
+		"body": [
+			"$1 | $2",
+			"--- | ---",
+			"$3 | $4"
+		],
+		"description": "markdown的表格输入"
 	}
 }

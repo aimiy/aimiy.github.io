@@ -112,8 +112,8 @@ permalink: /books/
 ## 项目
 
 - [ ] 一个自己的ui框架
-- [ ] axios源码
-- [ ] vue源码
+- [ ] axios源码阅读
+- [ ] vue源码阅读
 
 ## 综合
 

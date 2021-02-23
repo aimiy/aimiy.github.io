@@ -2,13 +2,12 @@
 layout: post
 title:  关于CSS3
 date:   2017-05-23 20:08:00 +0800
-categories: notes
+categories: 笔记
 tag: css
 ---
 
 * content
 {:toc}
-
 
 {% highlight css %}
 @keyframes bounceInLeft {

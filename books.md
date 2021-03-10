@@ -9,7 +9,6 @@ permalink: /books/
 
 ## TODO 待了解整理
 
-TODO 函数柯里化
 TODO: redux-thunk 核心代码只有五六行，很多人理解不了这两种写法的区别（上图：thunk，下图：无 thunk）
 
 TODO: NG事实证明，写ng并不能增长工程能力。同事写的ng代码，真的说得上，脏乱差，到处any，为了偷懒，所有组建挂在一个ng module

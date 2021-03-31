@@ -9,6 +9,22 @@ permalink: /books/
 
 ## TODO 待了解整理
 
+TODO 大前端+nodejs
+
+TODO es6语法
+
+TODO jsonp
+
+TODO 响应式布局
+
+TODO babel
+
+TODO 前端模块化 AMD CMD commonjs requirejs
+
+TODO UDP,TCP,HTTP,WEBSOCKET
+
+TODO nwjs，electron
+
 TODO: redux-thunk 核心代码只有五六行，很多人理解不了这两种写法的区别（上图：thunk，下图：无 thunk）
 
 TODO: NG事实证明，写ng并不能增长工程能力。同事写的ng代码，真的说得上，脏乱差，到处any，为了偷懒，所有组建挂在一个ng module

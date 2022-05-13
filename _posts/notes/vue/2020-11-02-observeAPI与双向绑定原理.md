@@ -97,7 +97,7 @@ let store = {
 export default store
 ```
 
-我这里同时做了一些存储状态与localstorage同步的处理。
+我这里同时做了一些存储状态与localstorage同步的处理。`localStorage.setItem("sdk" + key, JSON.stringify(val))`
 
 ### 添加mapState方法
 
@@ -130,4 +130,51 @@ export let mutations={
         store.name=name;
     }
 }
+```
+
+**一些搭配方法记录**
+由于做vuex与localstorage同步，写了一个从localstorage种填充vuex值得方法
+
+```js
+refreshState() {
+    for (let key in store.state) {
+      let ls = localStorage.getItem("sdk" + key);
+      if (ls) {
+        try {
+          store.state[key] = JSON.parse(ls)
+          Vue.set(store.state, key, JSON.parse(localStorage.getItem("sdk" + key)))
+        } catch (error) {
+          store.state[key] = ls;
+          Vue.set(store.state, key, localStorage.getItem("sdk" + key))
+        }
+      }
+    }
+  },
+```
+
+还有一个初始化vuex状态的方法
+
+```js
+initAllState() {
+    for (let key in store.state) {
+      let type = Object.prototype.toString.call(store.state[key])
+      switch (type) {
+        case "[object Array]":
+          store.setState(key, [])
+          break;
+        case "[object Object]":
+          store.setState(key, {})
+          break;
+        case "[object Set]":
+          store.setState(key, new Set())
+          break;
+        case "[object Map]":
+          store.setState(key, new Map())
+          break;
+        default:
+          store.setState(key, null)
+      }
+    }
+    // localStorage.clear()
+  }
 ```

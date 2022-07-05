@@ -26,6 +26,12 @@ http协议底层基于socket的tcp协议，每次通信都会新建一个TCP连�
 
 缺点：客户端的数量增加，服务端承受的压力增大。对每个请求仍然要单独发header，Keep-Alive不会永久保持连接，它有一个保持时间，可以在不同的服务器软件（如Apache）中设定这个时间。
 
+> HTTP keep-alive 的作用是，告知服务端持久化当前的 TCP 连接，不要立即断开，以便后续的 HTTP 请求复用它，也就是我们所说的「长连接」
+> HTTP 的 keep-alive 是为了让 TCP 活久一点，而 TCP 本身也有一个 keepalive（注意没有横杠哦）机制。这是 TCP 的一种检测连接状况的保活机制，keepalive 是 TCP 保活定时器：TCP 建立后，如果闲置没用，服务器不可能白等下去，闲置一段时间[可设置]后，服务器就会尝试向客户端发送侦测包，来判断 TCP 连接状况，如果没有收到对方的回答（ACK包），就会过一会[可设置]再侦测一次，如果多次[可设置]都没回答，就会丢弃这个 TCP 连接
+
+![TCPkeepalive保活示意图](/styles/images/2022/TCPkeepalive保活示意图.png)
+（TCP keepalive 保活示意图）
+
 ### 总结
 
 长短连接指的是客户端和服务端建立和保持TCP连接的机制。
@@ -57,7 +63,7 @@ http协议底层基于socket的tcp协议，每次通信都会新建一个TCP连�
 
 ## WebSocket
 
-简介：
+### 简介
 
 WebSocket 协议在2008年诞生，2011年成为国际标准。所有浏览器都已经支持了。
 
@@ -67,17 +73,38 @@ WebSocket 协议在2008年诞生，2011年成为国际标准。所有浏览器�
 
 协议标识符是ws（如果加密，则为wss），服务器网址就是 URL。
 
-websocket：websocket是长连接，是一个真的全双工，第一次tcp链路建立以后，后续所有数据双方都主动发送，不需要发送请求头，与传统的 http 协议不同，该协议允许由服务器主动的向客户端推送信息。与HTTP长连接不同，websocket可以更灵活的控制连接关闭的时机，而不是HTTP协议的Keep-Alive一到，服务端立马就关闭（这样很不人性化）。
-优点：
+websocket是长连接，是一个真的全双工，第一次tcp链路建立以后，后续所有数据双方都主动发送，不需要发送请求头，与传统的 http 协议不同，该协议允许由服务器主动的向客户端推送信息。与HTTP长连接不同，websocket可以更灵活的控制连接关闭的时机，而不是HTTP协议的Keep-Alive一到，服务端立马就关闭（这样很不人性化）。
+
+### 优点
 
 建立在 TCP 协议之上，服务器端的实现比较容易。
 与 HTTP 协议有着良好的兼容性。默认端口也是80和443，并且握手阶段采用 HTTP 协议，因此握手时不容易屏蔽，能通过各种 HTTP 代理服务器。
 数据格式比较轻量，性能开销小，通信高效。
 没有同源限制，客户端可以与任意服务器通信。
+和 HTTP 一样都是建立在 TCP 协议之上，但只需一次 HTTP 握手，就能建立持久性连接，后续就不走 HTTP 了,而是 WebSocket 特有的数据帧
+全双工通信，双向数据传输
+数据格式轻量，且支持发送二进制数据，支持 ws 和加密的 wss
 
-缺点：
+### 缺点
 
 使用 WebSocket 协议的缺点是在服务器端的配置比较复杂。
+
+### 请求头特征
+
+![业务中websocket图片示例](/styles/images/2022/业务中websocket图片示例.png)
+
+* HTTP 必须是 1.1 GET 请求
+* HTTP Header 中 Connection 字段的值必须为 Upgrade
+* HTTP Header 中 Upgrade 字段必须为 websocket
+* Sec-WebSocket-Key 字段的值是采用 base64 编码的随机 16 字节字符串
+* Sec-WebSocket-Protocol 字段的值记录使用的子协议，比如 binary base64
+* Origin 表示请求来源
+
+### 响应头特征
+
+* 状态码是 101 表示 Switching Protocols
+* Upgrade / Connection / Sec-WebSocket-Protocol 和请求头一致
+* Sec-WebSocket-Accept 是通过请求头的 Sec-WebSocket-Key 生成
 
 ## SSE server-Sent Events
 
@@ -104,3 +131,12 @@ SSE 的基本思想是，服务器使用流信息向服务器推送信息。严�
 它相对于前面两种方式来说，不 需要建立过多的 http 请求，相比之下节约了资源。
 
 上面三种方式本质上都是基于 http 协议的，我们还可以使用 WebSocket 协议来实现。
+
+## 总结对比
+
+短连接轮询 | 长连接| websocket
+--|--|--
+很耗费 TCP 连接|HTTP keep-alive 开启后虽然 TCP 可以复用，但是 Header 重复的问题并没有解决.同时 HTTP keep-alive 还有一个有效期，有效期结束后服务端会发侦查帧探查 TCP 是否有效|和 HTTP 一样都是建立在 TCP 协议之上，但只需一次 HTTP 握手，就能建立持久性连接，后续就不走 HTTP 了,而是 WebSocket 特有的数据帧
+而且 Header 重复发送|
+且通过宏任务发起，受限于 Event Loop，无法保证及时性|
+同时无效请求会很多|

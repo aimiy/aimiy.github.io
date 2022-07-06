@@ -1,9 +1,10 @@
 ---
 layout: post
 title:  长/短 链接/轮询 SSE 和websocket 
-date:   2021-01-21 11:00:00 +0800
+date:   2019-01-12 11:00:00 +0800
 categories: 笔记
 tag: http
+imgUrlArr: ["/styles/images/2022/TCPkeepalive保活示意图.png"]
 ---
 * content
 {:toc}

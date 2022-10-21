@@ -1,0 +1,16 @@
+<script>
+    const logColor = (color, args) => {
+            console.log('%c' + args.join(' '), 'color:' + color)
+        }
+        const log = {
+            success: (...args) => logColor('green', args),
+            info: (...args) => logColor('gery', args),
+            warning: (...args) => logColor('orange', args),
+            error: (...args) => logColor('red', args)
+        }
+        log.success('Hello World')
+        log.info('Hello World')
+        log.warning('Hello World')
+        log.error('Hello World')
+
+</script>

@@ -2,8 +2,8 @@
 layout: post
 title:  onbeforeunload事件
 date:   2023-01-19 17:50:00 +0800
-categories: 
-tag: 
+categories: 笔记
+tag: window
 ---
 * content
 {:toc}

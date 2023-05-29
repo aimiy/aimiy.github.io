@@ -11,8 +11,13 @@ tag: js
 ## call,apply,bind
 
 由于call()、apply()与bind()都是属于Function.prototype对象下的方法，所以每个function实例都拥有有call、apply与bind属性。
+
 相同点：都是为改变this指向而存在的。
-异同点：使用call()方法时，传递给函数的参数必须逐个列举出来，使用apply()方法时，传递给函数的是参数数组。bind()和call()很相似，第一个参数是this的指向，从第二个参数开始是接收的参数列表。bind() 方法不会立即执行，而是返回一个改变了上下文 this后的函数，用于稍后调用。 call()、apply()则是立即调用。
+异同点：使用call()方法时，传递给函数的参数必须逐个列举出来，使用apply()方法时，传递给函数的是参数数组。这两个都是立即执行的。
+
+bind()不会立即执行，传参与和call()很相似，第一个参数是this的指向，从第二个参数开始是接收的参数列表。bind()方法返回一个改变了上下文 this后的函数，用于稍后调用。
+
+call()、apply()则是立即调用。
 
 ## call实现原理
 
@@ -43,6 +48,8 @@ var obj = {a:1, b:2};
 console.log(add.mycall(obj, 3, 4)); // 10
 ```
 
+相当于就是，add方法obj本身没有，要想使用obj的上下文来执行add方法，就用call，将方法赋予给obj的fn，此时直接执行obj.fn时，fn内部的this指向的就是obj。执行完返回结果即可。
+
 ## apply实现原理
 
 ```js
@@ -71,6 +78,8 @@ function add(c, d){
 var obj = {a:1, b:2};
 console.log(add.myapply(obj, [5, 6])); // 14
 ```
+
+apply与call一样，区别就是获取参数的方式不同
 
 ## bind实现原理
 
@@ -103,3 +112,5 @@ console.log(site) // function () { … }
 // 通过mybind使其this发生了变化
 site();// zhangpeiyue.com
 ```
+
+bind与call传参类似，但是返回的不是结果，是一个可以再次执行的函数。是函数就有可能再次传参，因此又要合并参数。

@@ -38,7 +38,7 @@ tag: vuecli2
 └── static
 ```
 
-## webpack配置
+## build目录，webpack打包
 
 主要对build目录下的webpack配置做详细分析
 
@@ -471,3 +471,161 @@ rm(path.join(config.build.assetsRoot, config.build.assetsSubDirectory), err => {
 
 参考文档:
 [vue-cli中的webpack配置](https://www.cnblogs.com/libin-1/p/6596810.html)
+
+## 配置文件
+
+### .postcssrc.js/postcss.config.js
+
+文件内容
+
+```js
+module.exports = {
+  "plugins": {
+    "postcss-import": {},      //用于@import导入css文件
+    "postcss-url": {},           //路径引入css文件或node_modules文件
+    "postcss-aspect-ratio-mini": {},   //用来处理元素容器宽高比
+    "postcss-write-svg": { utf8: false },    //用来处理移动端1px的解决方案。该插件主要使用的是border-image和background来做1px的相关处理。
+    "postcss-cssnext": {},  //该插件可以让我们使用CSS未来的特性，其会对这些特性做相关的兼容性处理。
+    "postcss-px-to-viewport": {    //把px单位转换为vw、vh、vmin或者vmax这样的视窗单位，也是vw适配方案的核心插件之一。
+     viewportWidth: 750,    //视窗的宽度
+     viewportHeight: 1334,   //视窗的高度
+     unitPrecision: 3,    //将px转化为视窗单位值的小数位数
+     viewportUnit: 'vw',    //指定要转换成的视窗单位值
+     selectorBlackList: ['.ignore', '.hairlines'],    //指定不转换视窗单位值得类，可以自定义，可以无限添加
+     minPixelValue: 1,    //小于等于1px不转换为视窗单位
+     mediaQuery: false   //允许在媒体查询中使用px
+    },
+    "postcss-viewport-units":{}, //给vw、vh、vmin和vmax做适配的操作,这是实现vw布局必不可少的一个插件
+    "cssnano": {    //主要用来压缩和清理CSS代码。在Webpack中，cssnano和css-loader捆绑在一起，所以不需要自己加载它。
+     preset: "advanced",   //重复调用
+     autoprefixer: false,    //cssnext和cssnano都具有autoprefixer,事实上只需要一个，所以把默认的autoprefixer删除掉，然后把cssnano中的autoprefixer设置为false。
+     "postcss-zindex": false   //只要启用了这个插件，z-index的值就会重置为1
+    }
+  }
+}
+```
+
+### .eslintrc.js
+
+eslint是用来管理和检测js代码风格的工具，可以和编辑器搭配使用，如vscode的eslint插件 当有不符合配置文件内容的代码出现就会报错或者警告。
+[官方文档](https://zh-hans.eslint.org/docs/latest/use/configure/configuration-files)
+
+一些配置项如下TODO:自己找项目测一下
+
+rules 启用的规则及其各自的错误级别，详细可以参考 eslint规则。
+parser 配置解释器，默认为 Espree，我们也可以配置 babel-eslint 作为解释器。
+parserOptions 解析器选项，能帮助 ESLint 确定什么是解析错误。
+env 指定想启用的环境，并设置它们为 true。
+globals 定义全局变量，这样源文件中使用的全局变量就不会发出警告。
+plugins 配置第三方插件，插件名称可以省略 eslint-plugin- 前缀。
+settings 添加共享设置，提供给每一个将被执行的规则。
+root 设置为 true，停止在父级目录中查找。
+extends 可以从基础配置中继承已启用的规则。
+overrides 可以实现精细的配置，比如，如果同一个目录下的文件需要有不同的配置。
+
+```js
+module.exports = {
+    // 停止在父级目录中查找
+    "root": true,
+    // 启用一系列核心规则
+    "extends": "eslint:recommended",
+    // 启用的规则及其各自的错误级别
+    "rules": {
+        "semi": ["error", "always"],
+        "quotes": "error",
+        // 启用插件专用的规则
+        "example-plugin/eqeqeq": "off"
+    },
+    // 解析器选项
+    "parserOptions": {
+        // ECMAScript 版本
+        "ecmaVersion": 6,
+        // 设置为 "script" (默认) 或 "module"（如果你的代码是 ECMAScript 模块)
+        "sourceType": "module",
+        // 使用的额外的语言特性
+        "ecmaFeatures": {
+            // 启用 JSX
+            "jsx": true
+        }
+    },
+    // 一个对Babel解析器的包装，使其能够与 ESLint 兼容
+    "parser": "babel-eslint",
+    // 全局变量
+    "globals": {
+        "document": false,
+        "window": false,
+        "HTMLInputElement": false,
+        "HTMLDivElement": false,
+        "localStorage": true
+    },
+    // 指定想启用的环境
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "es6": true,
+        "jest": true,
+        "node": true,
+        // 指定插件专用环境
+        "example-plugin/browser": true
+    },
+    // 配置插件
+    "plugins": [
+        "example-plugin"
+    ],
+    // 匹配特定的 glob 模式的文件
+    overrides: {
+        // 匹配所有.ts .tsx 文件
+        files: ['**/*.ts', '**/*.tsx'],
+        // 指定解析器
+        parser: '@typescript-eslint/parser',
+        // 指定解析器选项
+        parserOptions: {
+          ecmaVersion: 2018,
+          sourceType: 'module',
+          ecmaFeatures: {
+            jsx: true,
+          }
+        }
+    }
+}
+```
+
+参考文档:
+[使用Eslint和Editorconfig规范代码](https://www.jianshu.com/p/6611eb8fa9ff)
+
+#### .editorconfig
+
+editorconfig 保证了我们在不同的环境，使用不用的编辑器都有统一的规范。比如在 window 上默认换行使用 CRLF, 而在 mac 上的换行风格是 IF ; 有的编辑器默认缩进使用 Tab, 而有的编辑器使用 Space 等。
+
+vscode 环境需要安装 EditorConfig for VS Code 插件，并在根目录下增加配置文件 .editorconfig
+
+```json
+# 标记此配置文件为最顶层
+root = true
+
+# 匹配所有文件
+[*]
+# 缩进格式 空格
+indent_style = space
+# 缩进格式字符大小
+indent_size = 2
+# 换行格式
+end_of_line = lf
+# 字符编码
+charset = utf-8
+# 去除每行末尾多余空格
+trim_trailing_whitespace = true
+# 在代码末尾添加新行
+insert_final_newline = true
+```
+
+### .babelrc/babel.config.js
+
+TODO:BABEL
+[babel官方文档](https://www.babeljs.cn/docs/)
+ 这个文件是用来设置转码的规则和插件的
+[.babelrc配置详解](https://www.jianshu.com/p/0d608955979d?utm_campaign=maleskine&utm_content=note&utm_medium=seo_notes&utm_source=recommendation)
+[Vue .babelrc配置](https://www.cnblogs.com/jisa/p/11819023.html)
+[babel6 快速指南](https://blog.csdn.net/weixin_34072159/article/details/91429686)
+[坐下来，聊聊babel](https://blog.csdn.net/keader01/article/details/120920813)
+[前端系列——快速理解babel6配置过程](https://segmentfault.com/a/1190000012753134)
